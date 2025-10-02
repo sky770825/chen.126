@@ -190,7 +190,7 @@
         }
 
         .mindful-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: white;
         }
 
@@ -256,7 +256,7 @@
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: clamp(1rem, 3vw, 2rem);
             margin-top: 3rem;
         }
@@ -288,10 +288,10 @@
         }
 
         .systems-section {
-            background: #0f172a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: #fff;
-            border-top: 1px solid #60A5FA;
-            border-bottom: 1px solid #60A5FA;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             position: relative;
             margin: 2rem 0;
         }
@@ -304,8 +304,8 @@
             transform: translateY(-50%);
             width: 8px;
             height: 40%;
-            border: 1px solid #60A5FA;
-            opacity: 0.6;
+            border: 1px solid rgba(255,255,255,0.6);
+            opacity: 0.8;
         }
 
         .systems-section::before {
@@ -330,35 +330,35 @@
         }
 
         .system-card {
-            background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-            border: 1px solid rgba(255,255,255,.2);
-            border-radius: 20px;
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 24px;
             padding: clamp(1.6rem, 3vw, 2rem);
             transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
         .system-card:hover {
-            background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.12));
-            transform: scale(1.02);
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(255,255,255,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         }
 
         .system-card h3 {
             font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             margin-bottom: 0.8rem;
             font-weight: 700;
-            color: #BFDBFE;
-            text-shadow: 
-                0 0 10px rgba(191, 219, 254, 0.9),
-                0 0 20px rgba(96, 165, 250, 0.7),
-                0 2px 4px rgba(0,0,0,0.3);
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
             letter-spacing: 0.5px;
         }
 
         .system-card p {
             font-size: clamp(0.9rem, 2vw, 1rem);
-            color: #F5F5DC;
+            color: #ffffff;
             line-height: 1.6;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
             font-weight: 500;
         }
 
@@ -395,7 +395,7 @@
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #2D5A4A 0%, #1a1a1a 100%);
             text-align: center;
             color: white;
         }
@@ -484,7 +484,7 @@
             max-width: 800px;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            height: clamp(600px, 70vw, 800px);
+            height: clamp(800px, 80vw, 1000px);
             transform: scale(0.85);
             transform-origin: top center;
             margin-bottom: -15%;
@@ -531,10 +531,25 @@
         }
 
         .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
             gap: 2rem;
             margin-top: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+            width: 100%;
+        }
+        
+        .testimonial-card.active {
+            opacity: 1;
+            transform: translateX(0);
+            position: relative;
         }
 
         .testimonial-card {
@@ -579,7 +594,7 @@
 
         @media (max-width: 1024px) and (min-width: 769px) {
             .benefits-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
             .systems-grid {
                 grid-template-columns: 1fr;
@@ -646,11 +661,19 @@
 
             /* 三大系統 / 產品差異化 / 學員收穫卡片 */
             .systems-grid,
-            .product-diff-grid,
-            .benefits-grid,
-            .testimonials-grid {
+            .product-diff-grid {
                 grid-template-columns: 1fr !important;
                 gap: 1.2rem;
+            }
+            .testimonials-grid {
+                display: flex !important;
+                gap: 1rem;
+                overflow: hidden;
+                position: relative;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem;
             }
 
             .system-card,
@@ -687,7 +710,7 @@
             .survey-iframe {
                 transform: scale(1);
                 margin-bottom: 0;
-                height: 550px;
+                height: 700px;
             }
 
             /* 見證輪播（簡化：一個一行） */
@@ -706,9 +729,12 @@
             }
 
             /* 原有樣式保留 */
-            .intro-content,
-            .comparison-grid {
+            .intro-content {
                 grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
             }
 
             .systems-section::before,
@@ -745,6 +771,24 @@
             /* 手機版卡片間距 */
             .comparison-card {
                 margin-bottom: 1.5rem;
+                padding: 1.2rem;
+                font-size: 0.85rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 200px;
+            }
+            .comparison-card h3 {
+                font-size: clamp(1rem, 2.5vw, 1.2rem);
+                margin-bottom: 0.8rem;
+            }
+            .comparison-card p {
+                font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+                line-height: 1.4;
+            }
+            .comparison-card p:last-child {
+                margin-top: auto;
+                margin-bottom: 0;
             }
 
             /* 手機版按鈕間距 */
@@ -779,7 +823,7 @@
             }
 
             .survey-iframe {
-                height: clamp(500px, 80vw, 600px);
+                height: clamp(600px, 80vw, 800px);
                 transform: scale(0.9);
                 margin-bottom: -10%;
             }
@@ -820,7 +864,7 @@
 
             .benefits-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+                gap: 0.8rem;
             }
 
             .benefit-card {
@@ -908,10 +952,20 @@
           border-radius: 24px; padding: clamp(1.5rem, 3vw, 2.5rem);
           box-shadow: 0 12px 40px rgba(0,0,0,0.07); border: 1px solid #eee;
         }
-        .about-badges { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+        .about-badges { 
+          display: grid; 
+          grid-template-columns: 1fr 1fr 1fr; 
+          gap: .4rem; 
+          margin-top: 1rem; 
+        }
         .badge {
           background: #E8D5C4; color: #2D5A4A; font-weight: 700;
-          padding: .4rem .7rem; border-radius: 999px; font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+          padding: .3rem .5rem; border-radius: 999px; 
+          font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .about-quote {
           margin-top: 1rem; padding-left: 1rem; border-left: 4px solid #2D5A4A; color: #2c2c2c;
@@ -1074,8 +1128,8 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>瘦，不是靠意志力<br>而是讓身心靈重新協作</h1>
-            <p class="subtitle">這不是快速減肥，而是一次從根本的蛻變</p>
+            <h1><span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">瘦</span>，不是靠<span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">意志力</span><br>而是讓<span style="color: #00D4AA; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">身心靈重新協作</span></h1>
+            <p class="subtitle">這不是<span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">快速減肥</span>，而是一次從<span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">根本的蛻變</span></p>
             <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
                 <a href="#cta" class="cta-button">了解如何開始 →</a>
                 <a href="https://lin.ee/bGlojvbj" class="cta-button line-btn">💬 加 LINE 諮詢</a>
@@ -1088,8 +1142,8 @@
             <h2 class="section-title">什麼是身心靈瘦身？</h2>
             <div class="intro-content">
                 <div class="intro-text">
-                    <p>多數減肥方法只專注在飲食和運動，卻忽略了大腦、情緒與代謝才是真正的控制中心。</p>
-                    <p style="margin-top: 1rem;">身心靈瘦身結合<strong>腦科學 × 心理飲食 × 生理支持</strong>，讓你的身體自然打開燃脂模式。</p>
+                    <p>多數減肥方法只專注在<span style="color: #FF6B9D; font-weight: 600;">飲食和運動</span>，卻忽略了<span style="color: #00D4AA; font-weight: 600;">大腦、情緒與代謝</span>才是真正的<span style="color: #FFD700; font-weight: 600;">控制中心</span>。</p>
+                    <p style="margin-top: 1rem;">身心靈瘦身結合<span style="color: #00D4AA; font-weight: 600;">腦科學</span> × <span style="color: #FF6B9D; font-weight: 600;">心理飲食</span> × <span style="color: #FFD700; font-weight: 600;">生理支持</span>，讓你的身體自然打開<span style="color: #FFD700; font-weight: 600;">燃脂模式</span>。</p>
                 </div>
                 <div class="highlight-box">
                     ✨ 不是意志力<br>→ 是神經穩定
@@ -1100,15 +1154,15 @@
 
     <section class="mindful-section fade-in">
         <div class="container">
-            <h2 class="section-title" style="color: white;">為什麼傳統減肥會失敗？</h2>
-            <p style="font-size: clamp(1.2rem, 3vw, 1.5rem); text-align: center; margin-bottom: 2rem;">
-                你吃下去的，常常不是食物，而是焦慮、孤單、壓力。
+            <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 3rem; text-align: center; color: #ffffff; letter-spacing: 1px;">為什麼<span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">傳統減肥</span>會失敗？</h2>
+            <p style="font-size: clamp(1.1rem, 2.8vw, 1.4rem); text-align: center; margin-bottom: 2rem; white-space: nowrap;">
+                你吃下去的，常常不是<span style="color: #00D4AA; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">食物</span>，而是<span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">焦慮、孤單、壓力</span>
             </p>
             <p style="font-size: clamp(1rem, 2.5vw, 1.3rem); text-align: center;">
-                傳統方法只治標不治本，忽略了情緒與大腦才是真正的控制中心。
+                傳統方法只<span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">治標不治本</span>，忽略了<span style="color: #00D4AA; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">情緒與大腦</span>才是<span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">控制中心</span>
             </p>
             <div class="quote-card">
-                「我發現自己不是嘴巴管不住，而是心裡太需要安慰。」
+                「我發現自己不是<span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">嘴巴管不住</span>，而是<span style="color: #00D4AA; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">心裡太需要安慰</span>。」
             </div>
         </div>
     </section>
@@ -1145,7 +1199,7 @@
 
     <section class="comparison-section fade-in">
         <div class="container">
-            <h2 class="section-title">身心靈瘦身教練 vs 一般瘦身教練</h2>
+            <h2 class="section-title" style="font-size: clamp(1.5rem, 4vw, 2.5rem); white-space: nowrap;">身心靈瘦身教練 vs 一般瘦身教練</h2>
             <div class="comparison-grid">
                 <div class="comparison-card holistic">
                     <h3>身心靈教練</h3>
@@ -1192,24 +1246,24 @@
         </div>
     </section>
 
-    <section id="systems" class="systems-section fade-in">
+    <section id="systems" class="systems-section">
         <div class="container">
-            <h2 class="section-title" style="color: #ffffff; text-shadow: 0 0 20px rgba(96, 165, 250, 0.8), 0 0 40px rgba(96, 165, 250, 0.6), 0 4px 8px rgba(0,0,0,0.3); font-weight: 800; letter-spacing: 1px;">三大核心系統</h2>
-            <p style="text-align: center; font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom: 3rem; color: #FFF8DC; text-shadow: 0 0 15px rgba(255, 248, 220, 0.4), 0 1px 3px rgba(0,0,0,0.2); font-weight: 500;">
-                這是一套深層的完整系統，不是表面技巧
+            <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 3rem; text-align: center; color: #2D1B69; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(255,255,255,0.3);">三大核心系統</h2>
+            <p style="text-align: center; font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom: 3rem; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); font-weight: 500;">
+                這是一套<span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">深層</span>的<span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">完整系統</span>，不是表面技巧
             </p>
             <div class="systems-grid">
                 <div class="system-card">
-                    <h3>01 身心流五金剛</h3>
-                    <p>解開暴食與自我否定的大腦迴路，重建內在穩定的神經模式</p>
+                    <h3>01 <span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">身心流五金剛</span></h3>
+                    <p>解開<span style="color: #FF6B9D; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">暴食與自我否定</span>的大腦迴路，重建<span style="color: #00D4AA; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">內在穩定</span>的神經模式</p>
                 </div>
                 <div class="system-card">
-                    <h3>02 TPE 心理飲食法</h3>
-                    <p>用「儀式感」取代意志力，每一餐都能修復行為模式</p>
+                    <h3>02 <span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">TPE 心理飲食法</span></h3>
+                    <p>用<span style="color: #FFD700; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">「儀式感」</span>取代意志力，每一餐都能<span style="color: #00D4AA; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">修復行為模式</span></p>
                 </div>
                 <div class="system-card">
-                    <h3>03 代謝支持系統</h3>
-                    <p>打開腸道菌叢、粒線體與神經節律，讓身體進入燃脂模式</p>
+                    <h3>03 <span style="color: #00D4AA; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">代謝支持系統</span></h3>
+                    <p>打開<span style="color: #FF6B9D; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">腸道菌叢、粒線體</span>與神經節律，讓身體進入<span style="color: #FFD700; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">燃脂模式</span></p>
                 </div>
             </div>
         </div>
@@ -1233,7 +1287,7 @@
                 </div>
 
                 <div class="diff-card">
-                    <h3>🦠 3X 合生元益生菌</h3>
+                    <h3>3X 合生元益生菌</h3>
                     <div class="tag">關鍵：菌叢型態翻轉</div>
                     <ul>
                         <li>專利益生菌，針對控醣與體態。</li>
@@ -1242,7 +1296,7 @@
                 </div>
 
                 <div class="diff-card">
-                    <h3>🌙 曦夜平衡（日/夜）</h3>
+                    <h3>曦夜平衡（日/夜）</h3>
                     <div class="tag">關鍵：神經節律</div>
                     <ul>
                         <li>日間清晰、夜晚修復，不只是助眠。</li>
@@ -1278,16 +1332,14 @@
     <section id="cta" class="cta-section fade-in">
         <div class="container">
             <div class="cta-content">
-                <h2>你不需要再節食或暴力運動</h2>
-                <p>想知道你的身心靈如何打開燃脂開關？</p>
+                <h2>你不需要再<span style="color: #FF6B9D; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">節食或暴力運動</span></h2>
+                <p>想知道你的<span style="color: #00D4AA; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">身心靈</span>如何打開<span style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">燃脂開關</span>？</p>
                 <div class="cta-buttons">
                     <a href="#form" class="cta-button primary">立即預約免費諮詢</a>
                     <div class="secondary-buttons">
                         <a href="https://lin.ee/bGlojvbj" class="cta-button line-btn">
                             <span class="line-icon">💬</span>加入LINE
                         </a>
-                        <span class="separator">或</span>
-                        <a href="#form" class="cta-button waitlist-btn">等待名單</a>
                     </div>
                 </div>
             </div>
@@ -1298,7 +1350,7 @@
         <div class="container">
             <h2 class="section-title">學員真實心聲</h2>
             <div class="testimonials-grid">
-                <div class="testimonial-card">
+                <div class="testimonial-card active">
                     <p class="testimonial-text">「我第一次覺得，瘦下來不是靠苦撐，而是變得自然。」</p>
                     <p class="testimonial-author">— 小雲，32歲</p>
                 </div>
@@ -1401,7 +1453,7 @@
                 <iframe 
                     src="https://www.surveycake.com/s/7LYq3" 
                     width="100%" 
-                    height="700" 
+                    height="900" 
                     frameborder="0" 
                     class="survey-iframe">
                 </iframe>
@@ -1479,6 +1531,27 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // 見證卡片自動切換
+        function initTestimonialCarousel() {
+            const cards = document.querySelectorAll('.testimonial-card');
+            let currentIndex = 0;
+            
+            function showNextCard() {
+                // 移除所有active類別
+                cards.forEach(card => card.classList.remove('active'));
+                
+                // 顯示下一張卡片
+                currentIndex = (currentIndex + 1) % cards.length;
+                cards[currentIndex].classList.add('active');
+            }
+            
+            // 每3秒切換一次
+            setInterval(showNextCard, 3000);
+        }
+        
+        // 初始化見證輪播
+        initTestimonialCarousel();
     </script>
 </body>
 </html>
